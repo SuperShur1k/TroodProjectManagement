@@ -1,16 +1,14 @@
-package com.example.TroodProjectManagement.repository
+package com.example.troodprojectmanagement.repository
 
 import com.example.TroodProjectManagement.model.Project
 import com.google.cloud.firestore.Firestore
-import com.google.firebase.cloud.FirestoreClient
 import org.springframework.stereotype.Repository
 import java.util.concurrent.CompletableFuture
 
 @Repository
-class ProjectRepository {
+class ProjectRepository(private val firestore: Firestore) { // ✅ Firestore через конструктор
 
     private val collectionName = "projects"
-    private val firestore: Firestore = FirestoreClient.getFirestore()
 
     fun getAllProjects(): CompletableFuture<List<Project>> {
         return CompletableFuture.supplyAsync {
