@@ -1,0 +1,6 @@
+spring.application.name=TroodProjectManagement
+
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+firebase.credentials=classpath:firebase/firebase-service-account.json
+firebase.database-url=https://your-project-id.firebaseio.com
