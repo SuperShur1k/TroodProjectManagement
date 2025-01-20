@@ -1,4 +1,4 @@
-package com.example.troodprojectmanagement.repository
+package com.example.TroodProjectManagement.repository
 
 import com.example.TroodProjectManagement.model.Project
 import com.google.cloud.firestore.Firestore
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 import java.util.concurrent.CompletableFuture
 
 @Repository
-class ProjectRepository(private val firestore: Firestore) { // ✅ Firestore через конструктор
+class ProjectRepository(private val firestore: Firestore) {
 
     private val collectionName = "projects"
 
@@ -26,8 +26,9 @@ class ProjectRepository(private val firestore: Firestore) { // ✅ Firestore ч�
 
     fun createProject(project: Project): CompletableFuture<String> {
         return CompletableFuture.supplyAsync {
-            val docRef = firestore.collection(collectionName).add(project).get()
-            docRef.id
+            val projectId = generateNextProjectId()
+            firestore.collection(collectionName).document(projectId).set(project.copy(id = projectId)).get()
+            projectId
         }
     }
 
@@ -41,5 +42,11 @@ class ProjectRepository(private val firestore: Firestore) { // ✅ Firestore ч�
         return CompletableFuture.runAsync {
             firestore.collection(collectionName).document(id).delete()
         }
+    }
+
+    private fun generateNextProjectId(): String {
+        val collection = firestore.collection(collectionName).get().get()
+        val count = collection.size() + 1
+        return "project-$count"
     }
 }
