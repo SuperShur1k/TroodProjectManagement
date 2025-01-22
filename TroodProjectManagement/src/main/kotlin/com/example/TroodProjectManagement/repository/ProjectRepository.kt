@@ -10,6 +10,16 @@ class ProjectRepository(private val firestore: Firestore) {
 
     private val collectionName = "projects"
 
+    private fun generateNextProjectId(): String {
+        val collection = firestore.collection(collectionName).get().get()
+
+        val maxId = collection.documents
+            .mapNotNull { it.id.removePrefix("project-").toIntOrNull() }
+            .maxOrNull() ?: 0
+
+        return "project-${maxId + 1}"
+    }
+
     fun getAllProjects(): CompletableFuture<List<Project>> {
         return CompletableFuture.supplyAsync {
             val snapshot = firestore.collection(collectionName).get().get()
@@ -42,11 +52,5 @@ class ProjectRepository(private val firestore: Firestore) {
         return CompletableFuture.runAsync {
             firestore.collection(collectionName).document(id).delete()
         }
-    }
-
-    private fun generateNextProjectId(): String {
-        val collection = firestore.collection(collectionName).get().get()
-        val count = collection.size() + 1
-        return "project-$count"
     }
 }

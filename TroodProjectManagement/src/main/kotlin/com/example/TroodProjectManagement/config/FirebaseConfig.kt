@@ -1,4 +1,4 @@
-package com.example.troodprojectmanagement.config
+package com.example.Troodprojectmanagement.config
 
 import com.google.auth.oauth2.GoogleCredentials
 import com.google.cloud.firestore.Firestore

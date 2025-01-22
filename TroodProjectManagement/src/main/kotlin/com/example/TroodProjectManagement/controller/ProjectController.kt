@@ -3,6 +3,7 @@ package com.example.TroodProjectManagement.controller
 import com.example.TroodProjectManagement.model.Project
 import com.example.TroodProjectManagement.service.ProjectService
 import jakarta.validation.Valid
+import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import java.util.concurrent.CompletableFuture
@@ -10,6 +11,7 @@ import java.util.concurrent.CompletableFuture
 @RestController
 @RequestMapping("/projects")
 class ProjectController(private val projectService: ProjectService) {
+    private val logger = LoggerFactory.getLogger(ProjectController::class.java)
 
     @GetMapping
     fun getAllProjects(): CompletableFuture<ResponseEntity<List<Project>>> {
@@ -23,6 +25,7 @@ class ProjectController(private val projectService: ProjectService) {
 
     @PostMapping
     fun createProject(@Valid @RequestBody project: Project): CompletableFuture<ResponseEntity<String>> {
+        logger.info("Creating project: $project")
         return projectService.createProject(project)
     }
 
