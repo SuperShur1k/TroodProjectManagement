@@ -31,14 +31,16 @@ TroodProjectManagement is a RESTful API built with Kotlin and Spring Boot for ma
 
 ### 2️⃣ Clone the Repository
 ```sh
-git clone https://github.com/your-username/TroodProjectManagement.git
+git clone https://github.com/SuperShur1k/TroodProjectManagement.git
 cd TroodProjectManagement
 ```
 
 ### 3️⃣ Set up Firebase Credentials
 1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
-2. Generate a private key (`firebase-service-account.json`) and place it in `src/main/resources/firebase/`.
-3. Ensure `application.properties` contains:
+2. Go to **Project Settings → Service accounts**.
+3. Click **Generate new private key** to download the `firebase-service-account.json` file.
+4. Move this file to `src/main/resources/firebase/` in your project.
+5. Ensure `application.properties` contains:
 ```properties
 spring.application.name=TroodProjectManagement
 spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
