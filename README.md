@@ -1,31 +1,151 @@
 # TroodProjectManagement
 
-## Project Description
-This is a backend for a project and vacancy management system. It uses **Kotlin**, **Spring Boot**, and **Firebase Firestore** for data storage.
+## 📌 Overview
+TroodProjectManagement is a RESTful API built with Kotlin and Spring Boot for managing projects and vacancies. It integrates with Firebase as a database and provides endpoints for CRUD operations on projects and vacancies.
 
-## Technologies
-- **Kotlin** – Primary programming language.
-- **Spring Boot** – For building the REST API.
-- **Firebase Firestore** – NoSQL database for storing projects and vacancies.
-- **GitHub** – Version control and collaboration.
+## 🚀 Features
+- CRUD operations for **projects** and **vacancies**
+- Firebase Firestore integration
+- Global exception handling
+- Input validation
+- Unit and integration tests
+- API documentation
 
-## How to Run the Project
-1. **Clone the repository**
+---
+
+## 🛠️ Tech Stack
+- **Kotlin** 1.9.25
+- **Spring Boot** 3.4.1
+- **Firebase Firestore** (Database)
+- **JUnit 5 & Mockito** (Testing)
+- **Maven** (Build tool)
+- **Docker** (Deployment)
+
+---
+
+## 📥 Installation & Setup
+### 1️⃣ Prerequisites
+- Install [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
+- Install [Maven](https://maven.apache.org/install.html)
+- Install [Docker](https://www.docker.com/)
+
+### 2️⃣ Clone the Repository
+```sh
+git clone https://github.com/your-username/TroodProjectManagement.git
+cd TroodProjectManagement
+```
+
+### 3️⃣ Set up Firebase Credentials
+1. Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
+2. Generate a private key (`firebase-service-account.json`) and place it in `src/main/resources/firebase/`.
+3. Ensure `application.properties` contains:
+```properties
+spring.application.name=TroodProjectManagement
+spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+spring.profiles.active=test
+
+firebase.credentials=firebase/firebase-service-account.json
+firebase.database-url=https://your-project-id.firebaseio.com
+```
+
+### 4️⃣ Build & Run the Application using Docker
+1. Build the Docker image:
    ```sh
-   git clone https://github.com/SuperShur1k/TroodProjectManagement.git
-   cd TroodProjectManagement
-   
-## Run locally
-  ./mvnw spring-boot:run
-  
-## API Endpoints
-  ## Project Management
-    GET /projects – Get all projects.
-    POST /projects – Create a new project.
-    PUT /projects/{id} – Update a project.
-    DELETE /projects/{id} – Delete a project.
-  ## Vacancy Management
-    GET /projects/{id}/vacancies – Get all vacancies for a specific project.
-    POST /projects/{id}/vacancies – Add a vacancy to a project.
-    PUT /vacancies/{id} – Update a vacancy.
-    DELETE /vacancies/{id} – Delete a vacancy.
+   docker build -t trood-project-management .
+   ```
+2. Run the container:
+   ```sh
+   docker run -p 8080:8080 trood-project-management
+   ```
+The server will start at `http://localhost:8080/`.
+
+---
+
+## 📖 API Endpoints & Usage
+### **Projects**
+| Method | Endpoint | Description | Example |
+|--------|---------|-------------|---------|
+| **GET** | `/projects` | Get all projects | `GET http://localhost:8080/projects` |
+| **GET** | `/projects/{id}` | Get a project by ID | `GET http://localhost:8080/projects/1` |
+| **POST** | `/projects` | Create a new project | See request example below |
+| **PUT** | `/projects/{id}` | Update a project | See request example below |
+| **DELETE** | `/projects/{id}` | Delete a project | `DELETE http://localhost:8080/projects/1` |
+
+### **Vacancies**
+| Method | Endpoint | Description | Example |
+|--------|---------|-------------|---------|
+| **GET** | `/projects/{projectId}/vacancies` | Get vacancies for a project | `GET http://localhost:8080/projects/1/vacancies` |
+| **POST** | `/projects/{projectId}/vacancies` | Add a vacancy to a project | See request example below |
+| **PUT** | `/vacancies/{vacancyId}` | Update a vacancy | See request example below |
+| **DELETE** | `/vacancies/{vacancyId}` | Delete a vacancy | `DELETE http://localhost:8080/vacancies/1` |
+
+### **Example API Requests**
+#### **Create a Project**
+```http
+POST http://localhost:8080/projects
+Content-Type: application/json
+
+{
+    "name": "New Project",
+    "field": "IT",
+    "experience": "2 years"
+}
+```
+
+#### **Update a Project**
+```http
+PUT http://localhost:8080/projects/1
+Content-Type: application/json
+
+{
+    "name": "Updated Project",
+    "field": "Finance",
+    "experience": "5 years"
+}
+```
+
+#### **Create a Vacancy**
+```http
+POST http://localhost:8080/projects/1/vacancies
+Content-Type: application/json
+
+{
+    "name": "Software Engineer",
+    "field": "Development",
+    "experience": "3 years",
+    "deadline": "2025-12-31",
+    "description": "Looking for a skilled developer."
+}
+```
+
+#### **Update a Vacancy**
+```http
+PUT http://localhost:8080/vacancies/1
+Content-Type: application/json
+
+{
+    "name": "Senior Software Engineer",
+    "field": "Development",
+    "experience": "5 years",
+    "deadline": "2026-06-30",
+    "description": "Looking for an experienced senior developer."
+}
+```
+
+---
+
+## 🧪 Running Tests
+```sh
+mvn test
+```
+
+---
+
+## 📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+---
+
+## 📞 Contact
+For any issues or feature requests, please open an issue on GitHub or contact the maintainer.
+
