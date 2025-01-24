@@ -57,7 +57,7 @@ firebase.database-url=https://your-project-id.firebaseio.com
    ```
 2. Run the container:
    ```sh
-   docker run -p 8080:8080 trood-project-management
+   docker run -d --name trood-management -p 8080:8080 trood-project-management
    ```
 The server will start at `http://localhost:8080/`.
 
