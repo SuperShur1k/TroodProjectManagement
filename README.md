@@ -141,11 +141,6 @@ mvn test
 
 ---
 
-## 📄 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
----
-
 ## 📞 Contact
-For any issues or feature requests, please open an issue on GitHub or contact the maintainer.
+For any issues or feature requests, please open an issue on GitHub.
 
