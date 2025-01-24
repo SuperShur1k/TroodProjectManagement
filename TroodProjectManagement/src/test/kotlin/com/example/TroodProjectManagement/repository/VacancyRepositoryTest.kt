@@ -60,9 +60,8 @@ class VacancyRepositoryTest {
         `when`(firestore.collection("vacancies")).thenReturn(collectionReference)
         `when`(collectionReference.document(anyString())).thenReturn(documentReference)
 
-        // Добавляем мок для whereEqualTo
         `when`(collectionReference.whereEqualTo(anyString(), anyString()))
-            .thenReturn(mock(Query::class.java))  // Мокируем Query
+            .thenReturn(mock(Query::class.java))
     }
 
 
