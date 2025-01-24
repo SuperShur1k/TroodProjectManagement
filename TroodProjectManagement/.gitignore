@@ -39,3 +39,6 @@ src/main/resources/firebase/firebase-service-account.json
 .idea/
 *.log
 firebase/firebase-service-account.json
+
+firebase-service-account.json
+*.env

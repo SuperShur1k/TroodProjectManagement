@@ -147,6 +147,15 @@
                 </dependencies>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>application.properties</include>
+                    <include>firebase/firebase-service-account.json</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
 
 </project>
