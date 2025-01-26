@@ -115,7 +115,7 @@ Content-Type: application/json
     "name": "Software Engineer",
     "field": "Development",
     "experience": "3 years",
-    "deadline": "2025-12-31",
+    "country": "USA",
     "description": "Looking for a skilled developer."
 }
 ```
@@ -129,7 +129,7 @@ Content-Type: application/json
     "name": "Senior Software Engineer",
     "field": "Development",
     "experience": "5 years",
-    "deadline": "2026-06-30",
+    "country": "USA",
     "description": "Looking for an experienced senior developer."
 }
 ```
