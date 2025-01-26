@@ -30,10 +30,10 @@ data class Vacancy(
     val experience: String,
 
     /**
-     * The deadline for applying to the vacancy. Cannot be null.
+     * The country required for the vacancy. Cannot be empty.
      */
-    @field:NotNull(message = "Deadline is required")
-    val deadline: String,
+    @field:NotBlank(message = "Country cannot be empty")
+    val country: String,
 
     /**
      * The description of the vacancy. Cannot be empty and must not exceed 1000 characters.

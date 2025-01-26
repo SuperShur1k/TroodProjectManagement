@@ -39,7 +39,7 @@ class VacancyServiceTest {
         name = "Test Vacancy",
         field = "IT",
         experience = "3 years",
-        deadline = "2025-12-31",
+        country = "USA",
         description = "Test description",
         projectId = "project-id"
     )

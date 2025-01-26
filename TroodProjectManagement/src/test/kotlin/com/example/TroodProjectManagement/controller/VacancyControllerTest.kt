@@ -37,7 +37,7 @@ class VacancyControllerTest {
         name = "Software Engineer",
         field = "IT",
         experience = "3 years",
-        deadline = "2025-12-31",
+        country = "Germany",
         description = "Great job",
         projectId = "123"
     )
